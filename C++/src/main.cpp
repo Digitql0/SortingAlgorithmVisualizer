@@ -17,6 +17,9 @@ int main() {
     Sorter cocktail_shaker("Cocktail Shaker", "?", "?",
                            cocktail_shaker_sort_step, WIDTH / 3 * 2);
     Sorter quick("Quick Sort", "?", "?", quick_sort_step, WIDTH * 2);
+    Sorter insertion("Insertion Sort", "?", "?", insertion_sort_step, WIDTH * 2);
+    Sorter selection("Selection Sort", "?", "?", selection_sort_step, WIDTH * 2);
+    Sorter merge("Merge Sort", "?", "?", merge_sort_step, WIDTH * 2);
 
     while (bubble.run_step() != 1 && !WindowShouldClose()) {
         draw(bubble);
@@ -48,8 +51,38 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
+        while (insertion.run_step() != 1 && !WindowShouldClose()) {
+        draw(insertion);
+    }
+
+    while (insertion.check_array_step() < 2 && !WindowShouldClose()) {
+        draw(insertion);
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        while (selection.run_step() != 1 && !WindowShouldClose()) {
+        draw(selection);
+    }
+
+    while (selection.check_array_step() < 2 && !WindowShouldClose()) {
+        draw(selection);
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        while (merge.run_step() != 1 && !WindowShouldClose()) {
+        draw(merge);
+    }
+
+    while (merge.check_array_step() < 2 && !WindowShouldClose()) {
+        draw(merge);
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
     while (!WindowShouldClose()) {
-        draw(quick);
+        draw(merge);
     }
     CloseWindow();
 }

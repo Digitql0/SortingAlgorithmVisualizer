@@ -73,6 +73,9 @@ class Algorithm {
 bool bubble_sort_step(Marker& marker, Algorithm& alg);
 bool cocktail_shaker_sort_step(Marker& marker, Algorithm& alg);
 bool quick_sort_step(Marker& marker, Algorithm& alg);
+bool insertion_sort_step(Marker& marker, Algoritm& alg);
+bool selection_sort_step(Marker& marker, Algoritm& alg);
+bool merge_sort_step(Marker& marker, Algoritm& alg);
 int check_array_step(Marker& marker, Algorithm& alg);
 
 #endif  // ALGORITHMS_HPP
