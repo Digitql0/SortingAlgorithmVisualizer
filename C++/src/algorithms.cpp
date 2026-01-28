@@ -227,6 +227,12 @@ bool quick_sort_step(Marker &marker, Algorithm &alg) {
   return false;
 }
 
+bool insertion_sort_step(Marker &marker, Algorithm &alg) {}
+
+bool selecion_sort_step(Marker &marker, Algorithm &alg) {}
+
+bool merge_sort_step(Marker &marker, Algorithm &alg) {}
+
 int check_array_step(Marker &marker, Algorithm &alg) {
   std::printf("%d\n", alg.highest_helpers);
   if (alg.m_check_result == 3)
