@@ -229,7 +229,7 @@ bool quick_sort_step(Marker &marker, Algorithm &alg) {
 
 bool insertion_sort_step(Marker &marker, Algorithm &alg) {}
 
-bool selecion_sort_step(Marker &marker, Algorithm &alg) {}
+bool selection_sort_step(Marker &marker, Algorithm &alg) {}
 
 bool merge_sort_step(Marker &marker, Algorithm &alg) {}
 
