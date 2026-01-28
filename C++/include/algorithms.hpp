@@ -69,15 +69,6 @@ public:
 
 // TODO: if you want make the other sorting algorithms too and let them play.
 
-<<<<<<< HEAD
-bool bubble_sort_step(Marker& marker, Algorithm& alg);
-bool cocktail_shaker_sort_step(Marker& marker, Algorithm& alg);
-bool quick_sort_step(Marker& marker, Algorithm& alg);
-bool insertion_sort_step(Marker& marker, Algoritm& alg);
-bool selection_sort_step(Marker& marker, Algoritm& alg);
-bool merge_sort_step(Marker& marker, Algoritm& alg);
-int check_array_step(Marker& marker, Algorithm& alg);
-=======
 bool bubble_sort_step(Marker &marker, Algorithm &alg);
 bool cocktail_shaker_sort_step(Marker &marker, Algorithm &alg);
 bool quick_sort_step(Marker &marker, Algorithm &alg);
@@ -85,6 +76,5 @@ bool insertion_sort_step(Marker &marker, Algorithm &alg);
 bool selection_sort_step(Marker &marker, Algorithm &alg);
 bool merge_sort_step(Marker &marker, Algorithm &alg);
 int check_array_step(Marker &marker, Algorithm &alg);
->>>>>>> main
 
 #endif // ALGORITHMS_HPP

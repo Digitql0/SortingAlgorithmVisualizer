@@ -54,7 +54,6 @@ int main() {
     draw(insertion);
   }
 
-<<<<<<< HEAD
   while (insertion.check_array_step() < 2 && !WindowShouldClose()) {
     draw(insertion);
   }
@@ -85,42 +84,6 @@ int main() {
     draw(merge);
   }
   CloseWindow();
-=======
-  while (insertion.run_step() != 1 && !WindowShouldClose()) {
-    draw(insertion);
-  }
-
-  while (insertion.check_array_step() < 2 && !WindowShouldClose()) {
-    draw(insertion);
-  }
-
-  std::this_thread::sleep_for(std::chrono::seconds(1));
-
-  while (selection.run_step() != 1 && !WindowShouldClose()) {
-    draw(selection);
-  }
-
-  while (selection.check_array_step() < 2 && !WindowShouldClose()) {
-    draw(selection);
-  }
-
-  std::this_thread::sleep_for(std::chrono::seconds(1));
-
-  while (merge.run_step() != 1 && !WindowShouldClose()) {
-    draw(merge);
-  }
-
-  while (merge.check_array_step() < 2 && !WindowShouldClose()) {
-    draw(merge);
-  }
-
-  std::this_thread::sleep_for(std::chrono::seconds(1));
-
-  while (!WindowShouldClose()) {
-    draw(merge);
-  }
-  CloseWindow();
->>>>>>> refs/remotes/origin/main
 }
 
 void draw(Sorter &sorter) {
