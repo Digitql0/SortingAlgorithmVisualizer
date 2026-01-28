@@ -1,7 +1,11 @@
 {
+<<<<<<< HEAD
+    "cmake.sourceDirectory": "/home/jasons/Projects/Active/SortingAlgorithmVisualizer/C++"
+=======
 <<<<<<< Updated upstream
     "cmake.sourceDirectory": "/home/digitql/Projects/Non-Github/SortingAlgorithmVisualizer/C++"
 =======
     "cmake.sourceDirectory": "/home/jason-sohn/Projects/Active/SortingAlgorithmVisualizer/C++"
 >>>>>>> Stashed changes
+>>>>>>> main
 }

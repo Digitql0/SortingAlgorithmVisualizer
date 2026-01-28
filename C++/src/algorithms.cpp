@@ -261,3 +261,9 @@ int check_array_step(Marker &marker, Algorithm &alg) {
 
   return 0;
 }
+
+bool insertion_sort_step(Marker &marker, Algoritm &alg) { auto end = alg.get }
+
+bool selection_sort_step(Marker &marker, Algoritm &alg) {}
+
+bool merge_sort_step(Marker &marker, Algoritm &alg) {}
