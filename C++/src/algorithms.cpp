@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 #include "marker.hpp"
@@ -227,7 +228,39 @@ bool quick_sort_step(Marker &marker, Algorithm &alg) {
   return false;
 }
 
-bool insertion_sort_step(Marker &marker, Algorithm &alg) {}
+bool insertion_sort_step(Marker &marker, Algorithm &alg) {
+  marker.clear_marks();
+  if (marker.get_length() < 2)
+    return true;
+
+  int pointer = alg.get_value("pointer", 0);
+  marker.mark_index(pointer, YELLOW);
+
+  if (pointer >= marker.get_length()) {
+    return true;
+  }
+
+  int index = alg.get_value("index", pointer);
+  marker.mark_index(index, BLUE);
+
+  auto &arr = marker.get_array();
+
+  if (index == 0) {
+    alg.insert_data("pointer", pointer + 1);
+    alg.insert_data("index", pointer + 1);
+    return false;
+  }
+
+  if (arr[index - 1] <= arr[index]) {
+    alg.insert_data("pointer", pointer + 1);
+    alg.insert_data("index", pointer + 1);
+    return false;
+  }
+
+  std::swap(arr[index], arr[index - 1]);
+  alg.insert_data("index", index - 1);
+  return false;
+}
 
 bool selection_sort_step(Marker &marker, Algorithm &alg) {}
 
