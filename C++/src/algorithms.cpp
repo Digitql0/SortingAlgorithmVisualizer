@@ -243,13 +243,13 @@ bool insertion_sort_step(Marker &marker, Algorithm &alg) {
   int index = alg.get_value("index", pointer);
   marker.mark_index(index, BLUE);
 
-  auto &arr = marker.get_array();
-
   if (index == 0) {
     alg.insert_data("pointer", pointer + 1);
     alg.insert_data("index", pointer + 1);
     return false;
   }
+
+  auto &arr = marker.get_array();
 
   if (arr[index - 1] <= arr[index]) {
     alg.insert_data("pointer", pointer + 1);
@@ -262,7 +262,41 @@ bool insertion_sort_step(Marker &marker, Algorithm &alg) {
   return false;
 }
 
-bool selection_sort_step(Marker &marker, Algorithm &alg) {}
+bool selection_sort_step(Marker &marker, Algorithm &alg) {
+  marker.clear_marks();
+  if (marker.get_length() < 2)
+    return true;
+
+  int pointer = alg.get_value("pointer", 0);
+  marker.mark_index(pointer, GREEN);
+
+  if (pointer >= marker.get_length()) {
+    return true;
+  }
+
+  int index = alg.get_value("index", pointer);
+  marker.mark_index(index, BLUE);
+
+  int min = alg.get_value("min", index);
+  marker.mark_index(min, RED);
+
+  auto &arr = marker.get_array();
+
+  if (arr[index] < arr[min]) {
+    alg.insert_data("min", index);
+  }
+
+  if (index >= marker.get_length()) {
+    std::swap(arr[min], arr[pointer]);
+    alg.insert_data("pointer", pointer + 1);
+    alg.insert_data("index", pointer + 1);
+    alg.insert_data("min", pointer + 1);
+    return false;
+  }
+
+  alg.insert_data("index", index + 1);
+  return false;
+}
 
 bool merge_sort_step(Marker &marker, Algorithm &alg) {}
 
