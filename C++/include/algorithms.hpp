@@ -5,11 +5,14 @@
 #include <ctime>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 #include "marker.hpp"
 
 extern const int FPS;
+
+enum class AlgStatus { FAILED, RUNNING, FINISHED };
+
+enum class CheckStatus { RUNNING, WAITING, SUCEEDED, FAILED };
 
 struct QuickSortHelper {
   int m_low;
@@ -25,8 +28,7 @@ class Algorithm {
 private:
   void reset_map();
   std::unordered_map<std::string, std::any> m_data_map;
-  bool (*m_func)(Marker &,
-                 Algorithm &); // if bool return true, its done
+  bool (*m_func)(Marker &, Algorithm &);
 
   const std::string m_name;
   const std::string m_time_complexity;
@@ -46,12 +48,9 @@ public:
   Algorithm(std::string name, std::string time_complexity,
             std::string space_complexity,
             bool (*function)(Marker &, Algorithm &));
-  // 0 = ran without return true
-  // 1 = ran and returned true -> stop
-  // 2 = didnt run
-  int run(Marker &marker);
-  int highest_helpers = 0;
-  int check(Marker &marker);
+
+  AlgStatus run(Marker &marker);
+  CheckStatus check(Marker &marker);
   void insert_data(std::string key, std::any data);
   // nullptr if not retrievable
   std::any retrieve_data(std::string key);
@@ -59,12 +58,8 @@ public:
 
   int m_last_check_index = 0;
   unsigned int m_highest_check_value = 0;
-  // 0 = check still running
-  // 1 = didnt run check yet
-  // 2 = check succesful
-  // 3 = check failed
-  int m_check_result = 1;
-  bool m_check_ready = false;
+
+  CheckStatus m_check_result = CheckStatus::WAITING;
 };
 
 // TODO: if you want make the other sorting algorithms too and let them play.
@@ -75,6 +70,6 @@ bool quick_sort_step(Marker &marker, Algorithm &alg);
 bool insertion_sort_step(Marker &marker, Algorithm &alg);
 bool selection_sort_step(Marker &marker, Algorithm &alg);
 bool merge_sort_step(Marker &marker, Algorithm &alg);
-int check_array_step(Marker &marker, Algorithm &alg);
+CheckStatus check_array_step(Marker &marker, Algorithm &alg);
 
 #endif // ALGORITHMS_HPP

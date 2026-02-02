@@ -13,72 +13,85 @@ int main() {
   InitWindow(WIDTH, HEIGHT, "Sort Visualizer");
   // SetTargetFPS(FPS);
 
-  Sorter bubble("Bubble Sort", "?", "?", bubble_sort_step, WIDTH / 2);
+  Sorter bubble("Bubble Sort", "?", "?", bubble_sort_step, WIDTH / 4);
   Sorter cocktail_shaker("Cocktail Shaker", "?", "?", cocktail_shaker_sort_step,
-                         WIDTH / 3 * 2);
-  Sorter quick("Quick Sort", "?", "?", quick_sort_step, WIDTH * 2);
-  Sorter insertion("Insertion Sort", "?", "?", insertion_sort_step, WIDTH * 2);
-  Sorter selection("Selection Sort", "?", "?", selection_sort_step, WIDTH * 2);
-  Sorter merge("Merge Sort", "?", "?", merge_sort_step, WIDTH * 2);
+                         WIDTH / 2);
+  Sorter quick("Quick Sort", "?", "?", quick_sort_step, WIDTH);
+  Sorter insertion("Insertion Sort", "?", "?", insertion_sort_step, WIDTH / 2);
+  Sorter selection("Selection Sort", "?", "?", selection_sort_step, WIDTH / 4);
+  Sorter merge("Merge Sort", "?", "?", merge_sort_step, WIDTH);
 
-  while (bubble.run_step() != 1 && !WindowShouldClose()) {
+  while (bubble.run_step() != AlgStatus::FINISHED && !WindowShouldClose()) {
     draw(bubble);
   }
-  while (bubble.check_array_step() < 2 && !WindowShouldClose()) {
+  while (bubble.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(bubble);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  while (cocktail_shaker.run_step() != 1 && !WindowShouldClose()) {
+  while (cocktail_shaker.run_step() != AlgStatus::FINISHED &&
+         !WindowShouldClose()) {
     draw(cocktail_shaker);
   }
 
-  while (cocktail_shaker.check_array_step() < 2 && !WindowShouldClose()) {
+  while (cocktail_shaker.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(cocktail_shaker);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  while (quick.run_step() != 1 && !WindowShouldClose()) {
+  while (quick.run_step() != AlgStatus::FINISHED && !WindowShouldClose()) {
     draw(quick);
   }
 
-  while (quick.check_array_step() < 2 && !WindowShouldClose()) {
+  while (quick.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(quick);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  while (insertion.run_step() != 1 && !WindowShouldClose()) {
+  while (insertion.run_step() != AlgStatus::FINISHED && !WindowShouldClose()) {
     draw(insertion);
   }
 
-  while (insertion.check_array_step() < 2 && !WindowShouldClose()) {
+  while (insertion.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(insertion);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  while (selection.run_step() != 1 && !WindowShouldClose()) {
+  while (selection.run_step() != AlgStatus::FINISHED && !WindowShouldClose()) {
     draw(selection);
   }
 
-  while (selection.check_array_step() < 2 && !WindowShouldClose()) {
+  while (selection.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(selection);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  while (merge.run_step() != 1 && !WindowShouldClose()) {
+  while (merge.run_step() != AlgStatus::FINISHED && !WindowShouldClose()) {
     draw(merge);
   }
 
-  while (merge.check_array_step() < 2 && !WindowShouldClose()) {
+  while (merge.check_array_step() == CheckStatus::RUNNING &&
+         !WindowShouldClose()) {
     draw(merge);
   }
 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  if (!WindowShouldClose())
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
   while (!WindowShouldClose()) {
     draw(merge);

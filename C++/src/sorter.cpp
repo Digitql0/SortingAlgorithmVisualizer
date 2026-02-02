@@ -2,17 +2,18 @@
 
 #include <raylib.h>
 
+#include "algorithms.hpp"
 #include "marker.hpp"
 
 Sorter::Sorter(std::string name, std::string time_complexity,
                std::string space_complexity,
-               bool (*sort_func)(Marker&, Algorithm&), int num_elements)
+               bool (*sort_func)(Marker &, Algorithm &), int num_elements)
     : m_marker(num_elements),
       m_algorithm(name, time_complexity, space_complexity, sort_func) {}
 
-bool Sorter::run_step() { return m_algorithm.run(m_marker); }
+AlgStatus Sorter::run_step() { return m_algorithm.run(m_marker); }
 
-Marker& Sorter::get_marker() { return m_marker; }
+Marker &Sorter::get_marker() { return m_marker; }
 
 // void Sorter::run(void (*draw)(Sorter&)) {
 //     draw(*this);
@@ -26,4 +27,4 @@ Marker& Sorter::get_marker() { return m_marker; }
 //     std::this_thread::sleep_for(std::chrono::seconds(2));
 // }
 
-int Sorter::check_array_step() { return m_algorithm.check(m_marker); }
+CheckStatus Sorter::check_array_step() { return m_algorithm.check(m_marker); }

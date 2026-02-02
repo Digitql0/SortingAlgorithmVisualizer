@@ -30,18 +30,22 @@ void Algorithm::reset_map() {
   m_data_map = std::unordered_map<std::string, std::any>();
 }
 
-int Algorithm::run(Marker &marker) {
+AlgStatus Algorithm::run(Marker &marker) {
   int out = 2;
   if (m_func != nullptr)
     out = m_func(marker, *this);
-  return out;
+  switch (out) {
+  case 0:
+    return AlgStatus::RUNNING;
+  case 1:
+    return AlgStatus::FINISHED;
+  case 2:
+    return AlgStatus::FAILED;
+  }
 }
 
-int Algorithm::check(Marker &marker) {
-  int out = check_array_step(marker, *this);
-  if (out == 1)
-    m_check_ready = true;
-  return out;
+CheckStatus Algorithm::check(Marker &marker) {
+  return check_array_step(marker, *this);
 }
 
 void Algorithm::insert_data(std::string key, std::any data) {
@@ -212,8 +216,6 @@ bool quick_sort_step(Marker &marker, Algorithm &alg) {
       helpers.push_back(l);
     }
     alg.insert_data("helpers", helpers);
-    if (helpers.size() > alg.highest_helpers)
-      alg.highest_helpers = helpers.size();
     return false;
   }
 
@@ -300,12 +302,11 @@ bool selection_sort_step(Marker &marker, Algorithm &alg) {
 
 bool merge_sort_step(Marker &marker, Algorithm &alg) {}
 
-int check_array_step(Marker &marker, Algorithm &alg) {
-  std::printf("%d\n", alg.highest_helpers);
-  if (alg.m_check_result == 3)
-    return 3;
-  if (alg.m_check_result == 1) {
-    alg.m_check_result = 0;
+CheckStatus check_array_step(Marker &marker, Algorithm &alg) {
+  if (alg.m_check_result == CheckStatus::FAILED)
+    return CheckStatus::FAILED;
+  if (alg.m_check_result == CheckStatus::WAITING) {
+    alg.m_check_result = CheckStatus::RUNNING;
     marker.mark_index(alg.m_last_check_index, DEFAULT_SUCCESS);
   }
 
@@ -319,12 +320,12 @@ int check_array_step(Marker &marker, Algorithm &alg) {
     for (int i = 0; i < alg.m_last_check_index; i++) {
       marker.mark_index(i, DEFAULT_FAILURE);
     }
-    return 3;
+    return CheckStatus::FAILED;
   }
 
   if (alg.m_last_check_index >= marker.get_length()) {
-    return 2;
+    return CheckStatus::SUCEEDED;
   }
 
-  return 0;
+  return CheckStatus::RUNNING;
 }
