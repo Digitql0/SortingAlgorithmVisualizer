@@ -19,6 +19,9 @@ public:
          int num_elements);
 
   Marker &get_marker();
+  Algorithm &get_algorithm();
+  CheckStatus get_check_status();
+  AlgStatus get_algorithm_status();
 
   AlgStatus run_step();
   CheckStatus check_array_step();

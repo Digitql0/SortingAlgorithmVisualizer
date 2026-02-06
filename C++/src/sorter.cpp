@@ -28,3 +28,11 @@ Marker &Sorter::get_marker() { return m_marker; }
 // }
 
 CheckStatus Sorter::check_array_step() { return m_algorithm.check(m_marker); }
+
+Algorithm &Sorter::get_algorithm() { return m_algorithm; }
+
+CheckStatus Sorter::get_check_status() { return m_algorithm.m_check_result; }
+
+AlgStatus Sorter::get_algorithm_status() {
+  return m_algorithm.m_algorithm_result;
+}

@@ -2,8 +2,7 @@
 
 #include <thread>
 
-#include "algorithms.hpp"
-#include "marker.hpp"
+#include "menu.hpp"
 #include "shared.hpp"
 #include "sorter.hpp"
 

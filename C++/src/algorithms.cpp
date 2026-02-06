@@ -31,16 +31,18 @@ void Algorithm::reset_map() {
 }
 
 AlgStatus Algorithm::run(Marker &marker) {
-  int out = 2;
-  if (m_func != nullptr)
-    out = m_func(marker, *this);
-  switch (out) {
-  case 0:
-    return AlgStatus::RUNNING;
-  case 1:
-    return AlgStatus::FINISHED;
-  case 2:
+  if (m_func == nullptr) {
+    m_algorithm_result = AlgStatus::FAILED;
     return AlgStatus::FAILED;
+  } else {
+    bool result = m_func(marker, *this);
+    if (result == true) {
+      m_algorithm_result = AlgStatus::FINISHED;
+      return AlgStatus::FINISHED;
+    } else {
+      m_algorithm_result = AlgStatus::RUNNING;
+      return AlgStatus::RUNNING;
+    }
   }
 }
 

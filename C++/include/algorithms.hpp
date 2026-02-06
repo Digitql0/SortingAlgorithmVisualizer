@@ -10,7 +10,7 @@
 
 extern const int FPS;
 
-enum class AlgStatus { FAILED, RUNNING, FINISHED };
+enum class AlgStatus { FAILED, RUNNING, FINISHED, WAITING };
 
 enum class CheckStatus { RUNNING, WAITING, SUCEEDED, FAILED };
 
@@ -59,6 +59,7 @@ public:
   int m_last_check_index = 0;
   unsigned int m_highest_check_value = 0;
 
+  AlgStatus m_algorithm_result = AlgStatus::WAITING;
   CheckStatus m_check_result = CheckStatus::WAITING;
 };
 
