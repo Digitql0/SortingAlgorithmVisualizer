@@ -41,6 +41,7 @@ void Menu::run() {
   }
 }
 
+// TODO: ISSUE #8: Complete drawMenu Function and update Function
 void Menu::drawMenu() {}
 
 void Menu::update(Vector2 mousePosition) {}
