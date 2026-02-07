@@ -1,5 +1,4 @@
-#ifndef MARKER_HPP
-#define MARKER_HPP
+#pragma once
 
 #include <raylib.h>
 
@@ -33,5 +32,3 @@ public:
   void clear_marks();
   std::vector<unsigned int> &get_array();
 };
-
-#endif // MARKER_HPP

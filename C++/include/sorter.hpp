@@ -1,6 +1,4 @@
-#ifndef SORTER_HPP
-#define SORTER_HPP
-
+#pragma once
 #include <raylib.h>
 
 #include <string>
@@ -23,5 +21,3 @@ public:
   AlgStatus run_step();
   CheckStatus check_array_step();
 };
-
-#endif // SORTER_HPP

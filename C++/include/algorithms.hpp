@@ -1,5 +1,4 @@
-#ifndef ALGORITHMS_HPP
-#define ALGORITHMS_HPP
+#pragma once
 
 #include <any>
 #include <ctime>
@@ -71,5 +70,3 @@ bool insertion_sort_step(Marker &marker, Algorithm &alg);
 bool selection_sort_step(Marker &marker, Algorithm &alg);
 bool merge_sort_step(Marker &marker, Algorithm &alg);
 CheckStatus check_array_step(Marker &marker, Algorithm &alg);
-
-#endif // ALGORITHMS_HPP
