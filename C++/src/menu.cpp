@@ -2,7 +2,24 @@
 #include "algorithms.hpp"
 #include <raylib.h>
 
-void Menu::addSorter(Sorter sorter) { options.push_back(sorter); }
+void Menu::addSorter(Sorter sorter) { 
+float option_height = HEIGHT / (options.size() + 1);
+for (int i = 0; i < options.size(); i++) {
+    options[i].rect.width = WIDTH;
+    options[i].rect.height = options_height;
+    options[i].rect.x = 0;
+    options[i].rect.y = options_height * i;
+}
+MenuHelper help;
+Rectangle rect;
+rect.width = WIDTH;
+rect.height = options_height;
+rect.x = 0;
+rect.y = options.size() * options_height;
+help.sorter = sorter;
+help.rect = rect;
+options.push_back(help);
+}
 
 void Menu::addSorter(std::string name, std::string time_complexity,
                      std::string space_complexity,
@@ -10,7 +27,7 @@ void Menu::addSorter(std::string name, std::string time_complexity,
                      int num_elements) {
   Sorter sorter(name, time_complexity, space_complexity, sort_func,
                 num_elements);
-  options.push_back(sorter);
+  addSorter(sorter);
 }
 
 void Menu::run() {
@@ -18,17 +35,17 @@ void Menu::run() {
     drawMenu();
   } else {
     while (end_condition == false) {
-      switch (curr->get_algorithm_status()) {
+      switch (curr->sorter.get_algorithm_status()) {
       case AlgStatus::WAITING:
       case AlgStatus::RUNNING:
-        curr->run_step();
+        curr->sorter.run_step();
         end_condition = end_condition_func();
         break;
       default:
-        switch (curr->get_check_status()) {
+        switch (curr->sorter.get_check_status()) {
         case CheckStatus::WAITING:
         case CheckStatus::RUNNING:
-          curr->check_array_step();
+          curr->sorter.check_array_step();
           end_condition = end_condition_func();
           break;
         default:
